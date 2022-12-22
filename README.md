@@ -1,6 +1,6 @@
 # Kinde Management API Swift Client Generator
 
-Generates a Swift 5 client for the Kinde Management API from an OpenAPI specification. The generated client forms part of the [Kinde Swift SDK](https://github.com/kinde-oss/kinde-auth-swift),
+Generates a Swift 5 client for the Kinde Management API from an OpenAPI specification. The generated client forms part of the [Kinde SDK](https://github.com/kinde-oss/kinde-sdk-ios),
 and is secured by bearer tokens obtained from the Kinde authentication provider.
 
 ## Quick Start
