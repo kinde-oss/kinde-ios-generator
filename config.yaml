@@ -1,0 +1,33 @@
+additionalProperties:
+  artifactId: swift-sdk-generator
+  useAsyncAwait: true
+  readonlyProperties: true
+  testCases: true
+  generateUnitTests: true
+
+templateDir: template
+files:
+   Auth/Auth.swift: {
+      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/Auth.swift
+   }
+   Auth/AuthStateRepository.swift: {
+      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/AuthStateRepository.swift
+   }
+   Auth/BearerDecodableRequestBuilder.swift: {
+      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/BearerDecodableRequestBuilder.swift
+   }
+   Auth/BearerRequestBuilder.swift: {      
+      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/BearerRequestBuilder.swift
+   }
+   Auth/BearerRequestBuilderFactory.swift: {
+      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/BearerRequestBuilderFactory.swift
+   }
+   Auth/BearerTokenHandler.swift: {
+      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/BearerTokenHandler.swift
+   }
+   Auth/Config.swift: {
+      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/Config.swift
+   }
+   Auth/DefaultLogger.swift: {
+      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/DefaultLogger.swift
+   }

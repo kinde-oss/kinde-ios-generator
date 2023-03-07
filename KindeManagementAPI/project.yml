@@ -3,7 +3,7 @@ targets:
   OpenAPIClient:
     type: framework
     platform: iOS
-    deploymentTarget: "9.0"
+    deploymentTarget: "13.0"
     sources: [OpenAPIClient]
     info:
       path: ./Info.plist
@@ -12,4 +12,4 @@ targets:
       APPLICATION_EXTENSION_API_ONLY: true
     scheme: {}
     dependencies:
-    - carthage: AnyCodable
+    - carthage: 
