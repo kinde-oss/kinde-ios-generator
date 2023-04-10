@@ -1,10 +1,10 @@
-name: OpenAPIClient
+name: KindeSDK
 targets:
-  OpenAPIClient:
+  KindeSDK:
     type: framework
     platform: iOS
     deploymentTarget: "13.0"
-    sources: [OpenAPIClient]
+    sources: [KindeSDK]
     info:
       path: ./Info.plist
       version: 0.0.1

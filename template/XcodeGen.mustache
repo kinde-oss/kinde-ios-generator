@@ -4,7 +4,7 @@ targets:
     type: framework
     platform: iOS
     deploymentTarget: "13.0"
-    sources: [{{swiftPackagePath}}{{^swiftPackagePath}}{{#useSPMFileStructure}}Sources{{/useSPMFileStructure}}{{^useSPMFileStructure}}{{projectName}}{{/useSPMFileStructure}}{{/swiftPackagePath}}]
+    sources: [{{projectName}}]
     info:
       path: ./Info.plist
       version: {{podVersion}}{{^podVersion}}{{#apiInfo}}{{version}}{{/apiInfo}}{{^apiInfo}}}0.0.1{{/apiInfo}}{{/podVersion}}

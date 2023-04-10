@@ -1,33 +1,49 @@
 additionalProperties:
+  projectName: KindeSDK
+  swiftPackagePath: KindeSDK/
   artifactId: swift-sdk-generator
   useAsyncAwait: true
   readonlyProperties: true
-  testCases: true
-  generateUnitTests: true
+  validatable: false
 
 templateDir: template
 files:
+   Auth/AtomicWrapper.swift: {
+      destinationFilename: KindeSDK/Auth/AtomicWrapper.swift
+   }
    Auth/Auth.swift: {
-      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/Auth.swift
+      destinationFilename: KindeSDK/Auth/Auth.swift
+   }
+   Auth/AuthError.swift: {
+      destinationFilename: KindeSDK/Auth/AuthError.swift
    }
    Auth/AuthStateRepository.swift: {
-      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/AuthStateRepository.swift
+      destinationFilename: KindeSDK/Auth/AuthStateRepository.swift
    }
    Auth/BearerDecodableRequestBuilder.swift: {
-      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/BearerDecodableRequestBuilder.swift
+      destinationFilename: KindeSDK/Auth/BearerDecodableRequestBuilder.swift
    }
    Auth/BearerRequestBuilder.swift: {      
-      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/BearerRequestBuilder.swift
+      destinationFilename: KindeSDK/Auth/BearerRequestBuilder.swift
    }
    Auth/BearerRequestBuilderFactory.swift: {
-      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/BearerRequestBuilderFactory.swift
+      destinationFilename: KindeSDK/Auth/BearerRequestBuilderFactory.swift
    }
    Auth/BearerTokenHandler.swift: {
-      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/BearerTokenHandler.swift
+      destinationFilename: KindeSDK/Auth/BearerTokenHandler.swift
    }
    Auth/Config.swift: {
-      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/Config.swift
+      destinationFilename: KindeSDK/Auth/Config.swift
    }
    Auth/DefaultLogger.swift: {
-      destinationFilename: OpenAPIClient/Classes/OpenAPIs/Auth/DefaultLogger.swift
+      destinationFilename: KindeSDK/Auth/DefaultLogger.swift
+   }
+   Auth/Keychain.swift: {
+      destinationFilename: KindeSDK/Auth/Keychain.swift
+   }
+   Auth/String+JWTTokenDecode.swift: {
+      destinationFilename: KindeSDK/Auth/String+JWTTokenDecode.swift
+   }
+   Auth/Tokens.swift: {
+      destinationFilename: KindeSDK/Auth/Tokens.swift
    }
