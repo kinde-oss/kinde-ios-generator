@@ -20,7 +20,7 @@ extension {{projectName}}API {
     {{#nonPublicApi}}internal{{/nonPublicApi}}{{^nonPublicApi}}public{{/nonPublicApi}} static var contentConfiguration = ContentConfiguration.default(){{/useVapor}}{{^useVapor}}
     
     /// If a HTTP status code is outside of this range the response will be interpreted as failed.
-    {{#nonPublicApi}}internal{{/nonPublicApi}}{{^nonPublicApi}}public{{/nonPublicApi}} static var successfulStatusCodeRange: Range = 200..<300{{/useVapor}}{{#useAlamofire}}
+    static var successfulStatusCodeRange: Range = 200..<300{{/useVapor}}{{#useAlamofire}}
     /// ResponseSerializer that will be used by the generator for `Data` responses
     ///
     /// If unchanged, Alamofires default `DataResponseSerializer` will be used. 
