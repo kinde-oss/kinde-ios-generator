@@ -1,3 +1,4 @@
 # Prevent generator from creating these files:
 
 KindeManagementAPI/KindeSDK/SynchronizedDictionary.swift
+KindeManagementAPI/KindeSDK/Configuration.swift

@@ -7,7 +7,7 @@
 import Foundation{{#useVapor}}
 import Vapor{{/useVapor}}
 
-{{#nonPublicApi}}internal{{/nonPublicApi}}{{^nonPublicApi}}public{{/nonPublicApi}} struct APIHelper {
+{{#nonPublicApi}}internal{{/nonPublicApi}}struct APIHelper {
     static func rejectNil(_ source: [String: Any?]) -> [String: Any]? {
         let destination = source.reduce(into: [String: Any]()) { result, item in
             if let value = item.value {

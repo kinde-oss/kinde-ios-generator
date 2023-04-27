@@ -8,8 +8,25 @@ additionalProperties:
 
 templateDir: template
 files:
-   Auth/AtomicWrapper.swift: {
-      destinationFilename: KindeSDK/Auth/AtomicWrapper.swift
+   APIHelper.mustache:
+      destinationFilename: KindeSDK/Utils/APIHelper.swift
+   Extensions.mustache:
+      destinationFilename: KindeSDK/Utils/Extensions.swift
+   CodableHelper.mustache:
+      destinationFilename: KindeSDK/Utils/CodableHelper.swift
+   JSONDataEncoding.mustache:
+      destinationFilename: KindeSDK/Utils/JSONDataEncoding.swift
+   JSONEncodingHelper.mustache: 
+      destinationFilename: KindeSDK/Utils/JSONEncodingHelper.swift
+   Models.mustache: 
+      destinationFilename: KindeSDK/Utils/Models.swift
+   OpenISO8601DateFormatter.mustache:
+      destinationFilename: KindeSDK/Utils/OpenISO8601DateFormatter.swift
+   URLSessionImplementations.mustache:
+      destinationFilename: KindeSDK/Utils/URLSessionImplementations.swift
+
+   Utils/AtomicWrapper.swift: {
+      destinationFilename: KindeSDK/Utils/AtomicWrapper.swift
    }
    Auth/Auth.swift: {
       destinationFilename: KindeSDK/Auth/Auth.swift
@@ -38,11 +55,11 @@ files:
    Auth/DefaultLogger.swift: {
       destinationFilename: KindeSDK/Auth/DefaultLogger.swift
    }
-   Auth/Keychain.swift: {
-      destinationFilename: KindeSDK/Auth/Keychain.swift
+   Utils/Keychain.swift: {
+      destinationFilename: KindeSDK/Utils/Keychain.swift
    }
-   Auth/String+JWTTokenDecode.swift: {
-      destinationFilename: KindeSDK/Auth/String+JWTTokenDecode.swift
+   Utils/String+JWTTokenDecode.swift: {
+      destinationFilename: KindeSDK/Utils/String+JWTTokenDecode.swift
    }
    Auth/Tokens.swift: {
       destinationFilename: KindeSDK/Auth/Tokens.swift
