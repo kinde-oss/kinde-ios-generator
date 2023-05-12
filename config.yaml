@@ -3,7 +3,6 @@ additionalProperties:
   swiftPackagePath: KindeSDK/
   artifactId: swift-sdk-generator
   useAsyncAwait: true
-  readonlyProperties: true
   validatable: false
 
 templateDir: template
@@ -63,4 +62,20 @@ files:
    }
    Auth/Tokens.swift: {
       destinationFilename: KindeSDK/Auth/Tokens.swift
+   }
+   
+   Tests/AuthErrorSpec.swift: {
+      destinationFilename: Tests/AuthErrorSpec.swift
+   }
+   Tests/AuthSpec.swift: {
+      destinationFilename: Tests/AuthSpec.swift
+   }
+   Tests/ConfigSpec.swift: {
+      destinationFilename: Tests/ConfigSpec.swift
+   }
+   Tests/DefaultLoggerSpec.swift: {
+      destinationFilename: Tests/DefaultLoggerSpec.swift
+   }
+   Tests/StringJWTTokenDecodeSpec.swift: {
+      destinationFilename: Tests/StringJWTTokenDecodeSpec.swift
    }

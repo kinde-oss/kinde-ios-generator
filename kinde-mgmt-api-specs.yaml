@@ -37,62 +37,8 @@ paths:
                 $ref: '#/components/schemas/user_profile'
         '403':
           description: Invalid credentials
-  /users:
-    get:
-      tags:
-        - Users
-      operationId: getUsers
-      description: |
-        The returned list can be sorted by full name or email address
-        in ascending or descending order. The number of records to return at a time can also be controlled using the page_size query
-        string parameter. 
-      summary: Returns a paginated list of end-user records for a business
-      parameters:
-        - name: sort
-          in: query
-          description: Describes the field and order to sort the result by
-          schema:
-            type: string
-            nullable: true
-            enum: [name_asc, name_desc, email_asc, email_desc]
-        - name: page_size
-          in: query
-          description: The number of items to return
-          schema:
-            type: integer
-            nullable: true
-        - name: user_id
-          in: query
-          description: The id of the user to filter by
-          schema:
-            type: integer
-            nullable: true
-        - name: next_token
-          in: query
-          description: A string to get the next page of results if there are more results
-          schema:
-            type: string
-            nullable: true
-      responses:
-        '200':
-          description: A succesful response with a list of users or an empty list
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/users'
-        '403':
-          description: Invalid credentials
 components:
   schemas:
-    users:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/user'
-        next_token:
-          type: string
     user:
       type: object
       properties:

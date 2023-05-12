@@ -5,7 +5,6 @@ Cartfile
 KindeSDK.podspec
 KindeSDK/APIs.swift
 KindeSDK/APIs/OAuthAPI.swift
-KindeSDK/APIs/UsersAPI.swift
 KindeSDK/Auth/Auth.swift
 KindeSDK/Auth/AuthError.swift
 KindeSDK/Auth/AuthStateRepository.swift
@@ -18,7 +17,6 @@ KindeSDK/Auth/DefaultLogger.swift
 KindeSDK/Auth/Tokens.swift
 KindeSDK/Models/User.swift
 KindeSDK/Models/UserProfile.swift
-KindeSDK/Models/Users.swift
 KindeSDK/Utils/APIHelper.swift
 KindeSDK/Utils/AtomicWrapper.swift
 KindeSDK/Utils/CodableHelper.swift
@@ -32,10 +30,13 @@ KindeSDK/Utils/String+JWTTokenDecode.swift
 KindeSDK/Utils/URLSessionImplementations.swift
 Package.swift
 README.md
+Tests/AuthErrorSpec.swift
+Tests/AuthSpec.swift
+Tests/ConfigSpec.swift
+Tests/DefaultLoggerSpec.swift
+Tests/StringJWTTokenDecodeSpec.swift
 docs/OAuthAPI.md
 docs/User.md
 docs/UserProfile.md
-docs/Users.md
-docs/UsersAPI.md
 git_push.sh
 project.yml
