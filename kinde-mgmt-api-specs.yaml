@@ -41,9 +41,12 @@ components:
   schemas:
     user:
       type: object
+      required:
+        - id
+        - email
       properties:
         id:
-          type: integer
+          type: string
         email:
           type: string
         full_name:
@@ -56,6 +59,9 @@ components:
           type: boolean
     user_profile:
       type: object
+      required:
+        - id
+        - updated_at
       properties:
         id:
           type: string
