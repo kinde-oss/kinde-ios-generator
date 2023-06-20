@@ -20,7 +20,7 @@ tags:
   - name: Users
     description: Everything about your end-users
 paths:
-  /oauth2/user_profile:
+  /oauth2/v2/user_profile:
     get:
       tags:
         - OAuth
@@ -37,67 +37,16 @@ paths:
                 $ref: '#/components/schemas/user_profile'
         '403':
           description: Invalid credentials
-  /users:
-    get:
-      tags:
-        - Users
-      operationId: getUsers
-      description: |
-        The returned list can be sorted by full name or email address
-        in ascending or descending order. The number of records to return at a time can also be controlled using the page_size query
-        string parameter. 
-      summary: Returns a paginated list of end-user records for a business
-      parameters:
-        - name: sort
-          in: query
-          description: Describes the field and order to sort the result by
-          schema:
-            type: string
-            nullable: true
-            enum: [name_asc, name_desc, email_asc, email_desc]
-        - name: page_size
-          in: query
-          description: The number of items to return
-          schema:
-            type: integer
-            nullable: true
-        - name: user_id
-          in: query
-          description: The id of the user to filter by
-          schema:
-            type: integer
-            nullable: true
-        - name: next_token
-          in: query
-          description: A string to get the next page of results if there are more results
-          schema:
-            type: string
-            nullable: true
-      responses:
-        '200':
-          description: A succesful response with a list of users or an empty list
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/users'
-        '403':
-          description: Invalid credentials
 components:
   schemas:
-    users:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/user'
-        next_token:
-          type: string
     user:
       type: object
+      required:
+        - id
+        - email
       properties:
         id:
-          type: integer
+          type: string
         email:
           type: string
         full_name:
@@ -110,15 +59,22 @@ components:
           type: boolean
     user_profile:
       type: object
+      required:
+        - id
+        - updated_at
       properties:
         id:
           type: string
-        preferred_email:
+        provided_id:
           type: string
-        last_name:
+        name:
           type: string
-        first_name:
+        given_name:
           type: string
+        family_name:
+          type: string
+        updated_at:
+          type: integer
   securitySchemes:
     kindeBearerAuth:
       type: http

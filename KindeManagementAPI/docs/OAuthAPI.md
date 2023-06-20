@@ -4,7 +4,7 @@ All URIs are relative to *https://app.kinde.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getUser**](OAuthAPI.md#getuser) | **GET** /oauth2/user_profile | Returns the details of the currently logged in user
+[**getUser**](OAuthAPI.md#getuser) | **GET** /oauth2/v2/user_profile | Returns the details of the currently logged in user
 
 
 # **getUser**
@@ -19,7 +19,7 @@ Contains the id, names and email of the currently logged in user
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import KindeSDK
 
 
 // Returns the details of the currently logged in user

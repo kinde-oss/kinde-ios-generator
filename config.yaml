@@ -1,0 +1,81 @@
+additionalProperties:
+  projectName: KindeSDK
+  swiftPackagePath: KindeSDK/
+  artifactId: swift-sdk-generator
+  useAsyncAwait: true
+  validatable: false
+
+templateDir: template
+files:
+   APIHelper.mustache:
+      destinationFilename: KindeSDK/Utils/APIHelper.swift
+   Extensions.mustache:
+      destinationFilename: KindeSDK/Utils/Extensions.swift
+   CodableHelper.mustache:
+      destinationFilename: KindeSDK/Utils/CodableHelper.swift
+   JSONDataEncoding.mustache:
+      destinationFilename: KindeSDK/Utils/JSONDataEncoding.swift
+   JSONEncodingHelper.mustache: 
+      destinationFilename: KindeSDK/Utils/JSONEncodingHelper.swift
+   Models.mustache: 
+      destinationFilename: KindeSDK/Utils/Models.swift
+   OpenISO8601DateFormatter.mustache:
+      destinationFilename: KindeSDK/Utils/OpenISO8601DateFormatter.swift
+   URLSessionImplementations.mustache:
+      destinationFilename: KindeSDK/Utils/URLSessionImplementations.swift
+
+   Utils/AtomicWrapper.swift: {
+      destinationFilename: KindeSDK/Utils/AtomicWrapper.swift
+   }
+   Auth/Auth.swift: {
+      destinationFilename: KindeSDK/Auth/Auth.swift
+   }
+   Auth/AuthError.swift: {
+      destinationFilename: KindeSDK/Auth/AuthError.swift
+   }
+   Auth/AuthStateRepository.swift: {
+      destinationFilename: KindeSDK/Auth/AuthStateRepository.swift
+   }
+   Auth/BearerDecodableRequestBuilder.swift: {
+      destinationFilename: KindeSDK/Auth/BearerDecodableRequestBuilder.swift
+   }
+   Auth/BearerRequestBuilder.swift: {      
+      destinationFilename: KindeSDK/Auth/BearerRequestBuilder.swift
+   }
+   Auth/BearerRequestBuilderFactory.swift: {
+      destinationFilename: KindeSDK/Auth/BearerRequestBuilderFactory.swift
+   }
+   Auth/BearerTokenHandler.swift: {
+      destinationFilename: KindeSDK/Auth/BearerTokenHandler.swift
+   }
+   Auth/Config.swift: {
+      destinationFilename: KindeSDK/Auth/Config.swift
+   }
+   Auth/DefaultLogger.swift: {
+      destinationFilename: KindeSDK/Auth/DefaultLogger.swift
+   }
+   Utils/Keychain.swift: {
+      destinationFilename: KindeSDK/Utils/Keychain.swift
+   }
+   Utils/String+JWTTokenDecode.swift: {
+      destinationFilename: KindeSDK/Utils/String+JWTTokenDecode.swift
+   }
+   Auth/Tokens.swift: {
+      destinationFilename: KindeSDK/Auth/Tokens.swift
+   }
+   
+   Tests/AuthErrorSpec.swift: {
+      destinationFilename: Tests/AuthErrorSpec.swift
+   }
+   Tests/AuthSpec.swift: {
+      destinationFilename: Tests/AuthSpec.swift
+   }
+   Tests/ConfigSpec.swift: {
+      destinationFilename: Tests/ConfigSpec.swift
+   }
+   Tests/DefaultLoggerSpec.swift: {
+      destinationFilename: Tests/DefaultLoggerSpec.swift
+   }
+   Tests/StringJWTTokenDecodeSpec.swift: {
+      destinationFilename: Tests/StringJWTTokenDecodeSpec.swift
+   }

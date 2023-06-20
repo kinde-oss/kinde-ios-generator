@@ -1,10 +1,10 @@
-name: OpenAPIClient
+name: KindeSDK
 targets:
-  OpenAPIClient:
+  KindeSDK:
     type: framework
     platform: iOS
-    deploymentTarget: "9.0"
-    sources: [OpenAPIClient]
+    deploymentTarget: "13.0"
+    sources: [KindeSDK]
     info:
       path: ./Info.plist
       version: 0.0.1
@@ -12,4 +12,4 @@ targets:
       APPLICATION_EXTENSION_API_ONLY: true
     scheme: {}
     dependencies:
-    - carthage: AnyCodable
+    - carthage: 

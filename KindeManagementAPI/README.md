@@ -1,4 +1,4 @@
-# Swift5 API client for OpenAPIClient
+# Swift5 API client for KindeSDK
 
 Provides endpoints to manage your Kinde Businesses
 
@@ -26,15 +26,13 @@ All URIs are relative to *https://app.kinde.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*OAuthAPI* | [**getUser**](docs/OAuthAPI.md#getuser) | **GET** /oauth2/user_profile | Returns the details of the currently logged in user
-*UsersAPI* | [**getUsers**](docs/UsersAPI.md#getusers) | **GET** /users | Returns a paginated list of end-user records for a business
+*OAuthAPI* | [**getUser**](docs/OAuthAPI.md#getuser) | **GET** /oauth2/v2/user_profile | Returns the details of the currently logged in user
 
 
 ## Documentation For Models
 
  - [User](docs/User.md)
  - [UserProfile](docs/UserProfile.md)
- - [Users](docs/Users.md)
 
 
 ## Documentation For Authorization
