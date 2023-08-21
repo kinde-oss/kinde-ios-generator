@@ -14,6 +14,7 @@ KindeSDK/Auth/BearerRequestBuilderFactory.swift
 KindeSDK/Auth/BearerTokenHandler.swift
 KindeSDK/Auth/Config.swift
 KindeSDK/Auth/DefaultLogger.swift
+KindeSDK/Auth/FlagError.swift
 KindeSDK/Auth/Tokens.swift
 KindeSDK/Models/User.swift
 KindeSDK/Models/UserProfile.swift
@@ -26,6 +27,8 @@ KindeSDK/Utils/JSONEncodingHelper.swift
 KindeSDK/Utils/Keychain.swift
 KindeSDK/Utils/Models.swift
 KindeSDK/Utils/OpenISO8601DateFormatter.swift
+KindeSDK/Utils/PList.swift
+KindeSDK/Utils/SDKVersion.swift
 KindeSDK/Utils/String+JWTTokenDecode.swift
 KindeSDK/Utils/URLSessionImplementations.swift
 Package.swift

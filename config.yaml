@@ -24,9 +24,6 @@ files:
    URLSessionImplementations.mustache:
       destinationFilename: KindeSDK/Utils/URLSessionImplementations.swift
 
-   Utils/AtomicWrapper.swift: {
-      destinationFilename: KindeSDK/Utils/AtomicWrapper.swift
-   }
    Auth/Auth.swift: {
       destinationFilename: KindeSDK/Auth/Auth.swift
    }
@@ -54,16 +51,29 @@ files:
    Auth/DefaultLogger.swift: {
       destinationFilename: KindeSDK/Auth/DefaultLogger.swift
    }
+   Auth/Tokens.swift: {
+      destinationFilename: KindeSDK/Auth/Tokens.swift
+   }
+   Auth/FlagError.swift: {
+      destinationFilename: KindeSDK/Auth/FlagError.swift
+   }
+   
+   Utils/AtomicWrapper.swift: {
+      destinationFilename: KindeSDK/Utils/AtomicWrapper.swift
+   }
    Utils/Keychain.swift: {
       destinationFilename: KindeSDK/Utils/Keychain.swift
    }
    Utils/String+JWTTokenDecode.swift: {
       destinationFilename: KindeSDK/Utils/String+JWTTokenDecode.swift
    }
-   Auth/Tokens.swift: {
-      destinationFilename: KindeSDK/Auth/Tokens.swift
+   Utils/PList.swift: {
+      destinationFilename: KindeSDK/Utils/PList.swift
    }
-   
+   Utils/SDKVersion.swift: {
+      destinationFilename: KindeSDK/Utils/SDKVersion.swift
+   }
+
    Tests/AuthErrorSpec.swift: {
       destinationFilename: Tests/AuthErrorSpec.swift
    }
