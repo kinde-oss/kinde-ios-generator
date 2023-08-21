@@ -26,7 +26,7 @@ public final class Auth {
         }
         guard let accessTokenExpirationDate = lastTokenResponse.accessTokenExpirationDate else {
             return false
-        }        
+        }
         return lastTokenResponse.accessToken != nil &&
                isAuthorized == true &&
                accessTokenExpirationDate > Date()
@@ -40,11 +40,31 @@ public final class Auth {
            let email = params["email"] as? String {
             let givenName = params["given_name"] as? String
             let familyName = params["family_name"] as? String
-            return User(id: idValue, email: email, lastName: familyName, firstName: givenName)
+            let picture = params["picture"] as? String
+            return User(id: idValue,
+                        email: email,
+                        lastName: familyName,
+                        firstName: givenName,
+                        picture: picture)
         }
         return nil
     }
     
+
+    public func getClaim(forKey key: String, token: TokenType = .accessToken) -> Claim? {
+        let lastTokenResponse = authStateRepository.state?.lastTokenResponse
+        let tokenToParse = token == .accessToken ? lastTokenResponse?.accessToken: lastTokenResponse?.idToken
+        guard let params = tokenToParse?.parsedJWT else {
+            return nil
+        }
+        if let value = params[key],
+            let value {
+            return Claim(name: key, value: value)
+        }
+        return nil
+    }
+    
+    @available(*, deprecated, message: "Use getClaim(forKey:token:) with return type Claim?")
     public func getClaim(key: String, token: TokenType = .accessToken) -> Any? {
         let lastTokenResponse = authStateRepository.state?.lastTokenResponse
         let tokenToParse = token == .accessToken ? lastTokenResponse?.accessToken: lastTokenResponse?.idToken
@@ -55,29 +75,36 @@ public final class Auth {
     }
     
     public func getPermissions() -> Permissions? {
-        if let permissionsArray = getClaim(key: "permissions") as? [String],
-           let orgCode = getClaim(key: "org_code") as? String {
+        if let permissionsClaim = getClaim(forKey: ClaimKey.permissions.rawValue),
+           let permissionsArray = permissionsClaim.value as? [String],
+           let orgCodeClaim = getClaim(forKey: ClaimKey.organisationCode.rawValue),
+           let orgCode = orgCodeClaim.value as? String {
+            
             let organization = Organization(code: orgCode)
             let permissions = Permissions(organization: organization,
                                           permissions: permissionsArray)
             return permissions
-        }        
+        }
         return nil
     }
     
     public func getPermission(name: String) -> Permission? {
-        if let permissions = getClaim(key: "permissions") as? [String],
-           let orgCode = getClaim(key: "org_code") as? String {
+        if let permissionsClaim = getClaim(forKey: ClaimKey.permissions.rawValue),
+           let permissionsArray = permissionsClaim.value as? [String],
+           let orgCodeClaim = getClaim(forKey: ClaimKey.organisationCode.rawValue),
+           let orgCode = orgCodeClaim.value as? String {
+            
             let organization = Organization(code: orgCode)
             let permission = Permission(organization: organization,
-                                        isGranted: permissions.contains(name))
+                                        isGranted: permissionsArray.contains(name))
             return permission
         }
         return nil
     }
     
     public func getOrganization() -> Organization? {
-        if let orgCode = getClaim(key: "org_code") as? String {
+        if let orgCodeClaim = getClaim(forKey: ClaimKey.organisationCode.rawValue),
+           let orgCode = orgCodeClaim.value as? String {
             let org = Organization(code: orgCode)
             return org
         }
@@ -85,11 +112,13 @@ public final class Auth {
     }
     
     public func getUserOrganizations() -> UserOrganizations? {
-        if let userOrgs = getClaim(key: "org_codes",
-                                   token: .idToken) as? [String] {
+        if let userOrgsClaim = getClaim(forKey: ClaimKey.organisationCodes.rawValue,
+                                   token: .idToken),
+           let userOrgs = userOrgsClaim.value as? [String] {
+            
             let orgCodes = userOrgs.map({ Organization(code: $0)})
             return UserOrganizations(orgCodes: orgCodes)
-        }        
+        }
         return nil
     }
     
@@ -424,8 +453,9 @@ public final class Auth {
             return nil
         }
         
+        let params = ["Kinde-SDK": "Swift/\(SDKVersion.versionString)"]
         return try await withCheckedThrowingContinuation { continuation in
-            authState.performAction {(accessToken, idToken, error1) in
+            authState.performAction(freshTokens: { (accessToken, idToken, error1) in
                 if let error = error1 {
                     self.logger.error(message: "Failed to get authentication tokens: \(error.localizedDescription)")
                     return continuation.resume(with: .failure(error))
@@ -437,6 +467,129 @@ public final class Auth {
                 }
                 let tokens = Tokens(accessToken: accessToken1, idToken: idToken)
                 continuation.resume(with: .success(tokens))
+            }, additionalRefreshParameters: params)
+        }
+    }
+}
+
+// MARK: - Feature Flags
+extension Auth {
+    
+    public func getFlag(code: String, defaultValue: Any? = nil, flagType: Flag.ValueType? = nil) throws -> Flag {
+        return try getFlagInternal(code: code, defaultValue: defaultValue, flagType: flagType)
+    }
+    
+    // Wrapper Methods
+    
+    public func getBooleanFlag(code: String, defaultValue: Bool? = nil) throws -> Bool {
+        if let value = try getFlag(code: code, defaultValue: defaultValue, flagType: .bool).value as? Bool {
+            return value
+        }else {
+            if let defaultValue {
+                return defaultValue
+            }else {
+                throw FlagError.notFound
+            }
+        }
+    }
+    
+    public func getStringFlag(code: String, defaultValue: String? = nil) throws -> String {
+        if let value = try getFlag(code: code, defaultValue: defaultValue, flagType: .string).value as? String {
+           return value
+        }else{
+            if let defaultValue {
+                return defaultValue
+            }else {
+                throw FlagError.notFound
+            }
+        }
+    }
+    
+    public func getIntegerFlag(code: String, defaultValue: Int? = nil) throws -> Int {
+        if let value = try getFlag(code: code, defaultValue: defaultValue, flagType: .int).value as? Int {
+            return value
+        }else {
+            if let defaultValue {
+                return defaultValue
+            }else {
+                throw FlagError.notFound
+            }
+        }
+    }
+    
+    // Internal
+    
+    private func getFlagInternal(code: String, defaultValue: Any?, flagType: Flag.ValueType?) throws -> Flag {
+        
+        guard let featureFlagsClaim = getClaim(forKey: ClaimKey.featureFlags.rawValue) else {
+            throw FlagError.unknownError
+        }
+        
+        guard let featureFlags = featureFlagsClaim.value as? [String : Any] else {
+            throw FlagError.unknownError
+        }
+        
+        if let flagData = featureFlags[code] as? [String: Any],
+           let valueTypeLetter = flagData["t"] as? String,
+           let actualFlagType = Flag.ValueType(rawValue: valueTypeLetter),
+           let actualValue = flagData["v"] {
+            
+            // Value type check
+            if let flagType, flagType != actualFlagType {
+                throw FlagError.incorrectType("Flag \"\(code)\" is type \(actualFlagType.typeDescription) - requested type \(flagType.typeDescription)")
+            }
+            
+            return Flag(code: code, type: actualFlagType, value: actualValue)
+            
+        }else {
+            
+            if let defaultValue {
+                // This flag does not exist - default value provided
+                return Flag(code: code, type: nil, value: defaultValue, isDefault: true)
+            }else {
+                throw FlagError.notFound
+            }
+        }
+    }
+}
+
+extension Auth {
+    private enum ClaimKey: String {
+        case permissions = "permissions"
+        case organisationCode = "org_code"
+        case organisationCodes = "org_codes"
+        case featureFlags = "feature_flags"
+    }
+}
+
+public struct Claim {
+    public let name: String
+    public let value: Any
+}
+
+public struct Flag {
+    public let code: String
+    public let type: ValueType?
+    public let value: Any
+    public let isDefault: Bool
+
+    public init(code: String, type: ValueType?, value: Any, isDefault: Bool = false) {
+        self.code = code
+        self.type = type
+        self.value = value
+        self.isDefault = isDefault
+    }
+    
+    public enum ValueType: String {
+        case string = "s"
+        case int = "i"
+        case bool = "b"
+        
+        fileprivate var typeDescription: String {
+            switch self {
+            case .string: return "string"
+            case .bool: return "boolean"
+            case .int: return "integer"
             }
         }
     }
