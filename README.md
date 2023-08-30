@@ -3,6 +3,9 @@
 Generates a Swift 5 client for the Kinde Management API from an OpenAPI specification. The generated client forms part of the [Kinde SDK](https://github.com/kinde-oss/kinde-sdk-ios),
 and is secured by bearer tokens obtained from the Kinde authentication provider.
 
+## Contributing
+Please refer to [Kinde’s contributing guidelines](https://github.com/kinde-oss/.github/blob/489e2ca9c3307c2b2e098a885e22f2239116394a/CONTRIBUTING.md).
+
 ## Quick Start
 
 To (re-)generate the Kinde Management API Swift5 client, clone the repo, and run `yarn && yarn generate-api`.
