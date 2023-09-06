@@ -17,7 +17,7 @@
     "generate-api": "npx rimraf KindeManagementAPI && npx @openapitools/openapi-generator-cli generate -i kinde-mgmt-api-specs.yaml -g swift5 -o ./KindeManagementAPI -c config.yaml  --ignore-file-override=./.openapi-generator-ignore"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^6.4.0",
+    "@openapitools/openapi-generator-cli": "^2.7.0",
     "rimraf": "^3.0.2"
   }
 }
