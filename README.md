@@ -14,6 +14,7 @@ Also, see the SDKs section in Kinde’s [contributing guidelines](https://github
 
 ### Requirements
 - NodeJS v16+. [Link to download](https://nodejs.org/en/download)
+- Java [Link to download](https://www.java.com/en/)
 
 ### Initial set up
 
