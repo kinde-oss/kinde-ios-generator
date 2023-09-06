@@ -1,6 +1,6 @@
 # Kinde iOS generator
 
-The generator for the [Kinde iOS SDK](<[link-to-sdk-repo](https://github.com/kinde-oss/kinde-auth-nextjs)>).
+The generator for the [Kinde iOS SDK](https://github.com/kinde-oss/kinde-sdk-ios).
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com) [![Kinde Docs](https://img.shields.io/badge/Kinde-Docs-eee?style=flat-square)](https://kinde.com/docs/developer-tools) [![Kinde Community](https://img.shields.io/badge/Kinde-Community-eee?style=flat-square)](https://thekindecommunity.slack.com)
 
