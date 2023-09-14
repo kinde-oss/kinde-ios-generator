@@ -37,7 +37,7 @@ let package = Package(
         {{#useRxSwift}}
         .package(url: "https://github.com/ReactiveX/RxSwift", .upToNextMajor(from: "6.2.0")),
         {{/useRxSwift}}
-        {{#useVapor}}
+        {{#useVapor}}	
         .package(url: "https://github.com/vapor/vapor", from: "4.0.0")
         {{/useVapor}}
 	.package(url: "https://github.com/openid/AppAuth-iOS.git", from: "1.6.2")
