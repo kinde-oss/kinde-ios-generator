@@ -1,6 +1,6 @@
 additionalProperties:
   projectName: KindeSDK
-  swiftPackagePath: KindeSDK/
+  swiftPackagePath: Sources/KindeSDK/
   artifactId: swift-sdk-generator
   useAsyncAwait: true
   validatable: false
@@ -8,70 +8,70 @@ additionalProperties:
 templateDir: template
 files:
    APIHelper.mustache:
-      destinationFilename: KindeSDK/Utils/APIHelper.swift
+      destinationFilename: Sources/KindeSDK/Utils/APIHelper.swift
    Extensions.mustache:
-      destinationFilename: KindeSDK/Utils/Extensions.swift
+      destinationFilename: Sources/KindeSDK/Utils/Extensions.swift
    CodableHelper.mustache:
-      destinationFilename: KindeSDK/Utils/CodableHelper.swift
+      destinationFilename: Sources/KindeSDK/Utils/CodableHelper.swift
    JSONDataEncoding.mustache:
-      destinationFilename: KindeSDK/Utils/JSONDataEncoding.swift
+      destinationFilename: Sources/KindeSDK/Utils/JSONDataEncoding.swift
    JSONEncodingHelper.mustache: 
-      destinationFilename: KindeSDK/Utils/JSONEncodingHelper.swift
+      destinationFilename: Sources/KindeSDK/Utils/JSONEncodingHelper.swift
    Models.mustache: 
-      destinationFilename: KindeSDK/Utils/Models.swift
+      destinationFilename: Sources/KindeSDK/Utils/Models.swift
    OpenISO8601DateFormatter.mustache:
-      destinationFilename: KindeSDK/Utils/OpenISO8601DateFormatter.swift
+      destinationFilename: Sources/KindeSDK/Utils/OpenISO8601DateFormatter.swift
    URLSessionImplementations.mustache:
-      destinationFilename: KindeSDK/Utils/URLSessionImplementations.swift
+      destinationFilename: Sources/KindeSDK/Utils/URLSessionImplementations.swift
 
    Auth/Auth.swift: {
-      destinationFilename: KindeSDK/Auth/Auth.swift
+      destinationFilename: Sources/KindeSDK/Auth/Auth.swift
    }
    Auth/AuthError.swift: {
-      destinationFilename: KindeSDK/Auth/AuthError.swift
+      destinationFilename: Sources/KindeSDK/Auth/AuthError.swift
    }
    Auth/AuthStateRepository.swift: {
-      destinationFilename: KindeSDK/Auth/AuthStateRepository.swift
+      destinationFilename: Sources/KindeSDK/Auth/AuthStateRepository.swift
    }
    Auth/BearerDecodableRequestBuilder.swift: {
-      destinationFilename: KindeSDK/Auth/BearerDecodableRequestBuilder.swift
+      destinationFilename: Sources/KindeSDK/Auth/BearerDecodableRequestBuilder.swift
    }
    Auth/BearerRequestBuilder.swift: {      
-      destinationFilename: KindeSDK/Auth/BearerRequestBuilder.swift
+      destinationFilename: Sources/KindeSDK/Auth/BearerRequestBuilder.swift
    }
    Auth/BearerRequestBuilderFactory.swift: {
-      destinationFilename: KindeSDK/Auth/BearerRequestBuilderFactory.swift
+      destinationFilename: Sources/KindeSDK/Auth/BearerRequestBuilderFactory.swift
    }
    Auth/BearerTokenHandler.swift: {
-      destinationFilename: KindeSDK/Auth/BearerTokenHandler.swift
+      destinationFilename: Sources/KindeSDK/Auth/BearerTokenHandler.swift
    }
    Auth/Config.swift: {
-      destinationFilename: KindeSDK/Auth/Config.swift
+      destinationFilename: Sources/KindeSDK/Auth/Config.swift
    }
    Auth/DefaultLogger.swift: {
-      destinationFilename: KindeSDK/Auth/DefaultLogger.swift
+      destinationFilename: Sources/KindeSDK/Auth/DefaultLogger.swift
    }
    Auth/Tokens.swift: {
-      destinationFilename: KindeSDK/Auth/Tokens.swift
+      destinationFilename: Sources/KindeSDK/Auth/Tokens.swift
    }
    Auth/FlagError.swift: {
-      destinationFilename: KindeSDK/Auth/FlagError.swift
+      destinationFilename: Sources/KindeSDK/Auth/FlagError.swift
    }
    
    Utils/AtomicWrapper.swift: {
-      destinationFilename: KindeSDK/Utils/AtomicWrapper.swift
+      destinationFilename: Sources/KindeSDK/Utils/AtomicWrapper.swift
    }
    Utils/Keychain.swift: {
-      destinationFilename: KindeSDK/Utils/Keychain.swift
+      destinationFilename: Sources/KindeSDK/Utils/Keychain.swift
    }
    Utils/String+JWTTokenDecode.swift: {
-      destinationFilename: KindeSDK/Utils/String+JWTTokenDecode.swift
+      destinationFilename: Sources/KindeSDK/Utils/String+JWTTokenDecode.swift
    }
    Utils/PList.swift: {
-      destinationFilename: KindeSDK/Utils/PList.swift
+      destinationFilename: Sources/KindeSDK/Utils/PList.swift
    }
    Utils/SDKVersion.swift: {
-      destinationFilename: KindeSDK/Utils/SDKVersion.swift
+      destinationFilename: Sources/KindeSDK/Utils/SDKVersion.swift
    }
 
    Tests/AuthErrorSpec.swift: {
@@ -94,4 +94,16 @@ files:
    }
    CustomFiles/LICENSE: {
       destinationFilename: LICENSE
+   }
+   CustomFiles/Package.resolved: {
+      destinationFilename: Package.resolved
+   }
+   CustomFiles/kinde-auth.json: {
+      destinationFilename: kinde-auth.json
+   }
+   CustomFiles/KindeSDK-Info.plist: {
+      destinationFilename: KindeSDK-Info.plist
+   }
+   CustomFiles/.gitignore: {
+      destinationFilename: .gitignore
    }

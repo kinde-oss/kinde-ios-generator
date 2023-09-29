@@ -10,18 +10,19 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '13.0'
   {{/useAlamofire}}
   s.version = '1.2.0'
-  s.source = {{#podSource}}{{& podSource}}{{/podSource}}{{^podSource}}{ :git => 'git@github.com:OpenAPITools/openapi-generator.git', :tag => 'v{{#apiInfo}}{{version}}{{/apiInfo}}{{^apiInfo}}}0.0.1{{/apiInfo}}' }{{/podSource}}
+  s.swift_version = '5.6.1'
+  s.source = {{#podSource}}{{& podSource}}{{/podSource}}{{^podSource}}{ :git => 'https://github.com/kinde-oss/kinde-sdk-ios.git', :tag => s.version.to_s }{{/podSource}}
   {{#podAuthors}}
-  s.authors = '{{.}}'
+  s.authors = { 'Kinde' => 'engineering@kinde.com' }
   {{/podAuthors}}
   {{#podSocialMediaURL}}
   s.social_media_url = '{{.}}'
   {{/podSocialMediaURL}}
-  s.license = {{#podLicense}}{{& podLicense}}{{/podLicense}}{{^podLicense}}'Proprietary'{{/podLicense}}
-  s.homepage = '{{podHomepage}}{{^podHomepage}}https://github.com/OpenAPITools/openapi-generator{{/podHomepage}}'
-  s.summary = '{{podSummary}}{{^podSummary}}{{projectName}} Swift SDK{{/podSummary}}'
+  s.license = { :type => 'MIT', :file => 'LICENSE' }
+  s.homepage = '{{podHomepage}}{{^podHomepage}}https://github.com/kinde-oss/kinde-sdk-ios{{/podHomepage}}'
+  s.summary = '{{podSummary}}{{^podSummary}}Kinde SDK for Swift iOS.{{/podSummary}}'
   {{#podDescription}}
-  s.description = '{{.}}'
+  s.description = 'Kinde SDK for authentication on iOS.'
   {{/podDescription}}
   {{#podScreenshots}}
   s.screenshots = {{& podScreenshots}}
@@ -29,7 +30,7 @@ Pod::Spec.new do |s|
   {{#podDocumentationURL}}
   s.documentation_url = '{{.}}'
   {{/podDocumentationURL}}
-  s.source_files = '{{projectName}}/**/*.swift'
+  s.source_files = 'Sources/{{projectName}}/**/*'
   {{#useAlamofire}}
   s.dependency 'Alamofire', '~> 5.4'
   {{/useAlamofire}}
@@ -39,5 +40,6 @@ Pod::Spec.new do |s|
   {{#useRxSwift}}
   s.dependency 'RxSwift', '~> 6.2'
   {{/useRxSwift}}
+  s.preserve_paths = ['Sources/{{projectName}}/README.md', 'Sources/docs/*.md']
   s.dependency 'AppAuth', '>= 1.6.2'
 end
