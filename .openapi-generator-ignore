@@ -1,4 +1,6 @@
 # Prevent generator from creating these files:
 
-KindeManagementAPI/KindeSDK/SynchronizedDictionary.swift
-KindeManagementAPI/KindeSDK/Configuration.swift
+KindeManagementAPI/Sources/KindeSDK/SynchronizedDictionary.swift
+KindeManagementAPI/Sources/KindeSDK/Configuration.swift
+KindeManagementAPI/git_push.sh
+KindeManagementAPI/project.yml

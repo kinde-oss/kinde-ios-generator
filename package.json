@@ -14,7 +14,7 @@
   "bugs": "https://github.com/kinde-oss/swift-sdk-generator/issues",
   "homepage": "https://kinde.com",
   "scripts": {
-    "generate-api": "npx rimraf KindeManagementAPI && npx @openapitools/openapi-generator-cli generate -i kinde-mgmt-api-specs.yaml -g swift5 -o ./KindeManagementAPI -c config.yaml  --ignore-file-override=./.openapi-generator-ignore"
+      "generate-api": "bash generate-sdk.sh"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^6.4.0",
