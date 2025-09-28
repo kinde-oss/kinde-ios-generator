@@ -406,7 +406,7 @@ public final class Auth {
 
                 let request = OIDAuthorizationRequest(configuration: configuration,
                                                       clientId: self.config.clientId,
-                                                      clientSecret: self.config.clientSecret,
+                                                      clientSecret: nil, // PKCE-only OAuth flow for mobile security
                                                       scope: self.config.scope,
                                                       redirectURL: redirectUrl,
                                                       responseType: OIDResponseTypeCode,

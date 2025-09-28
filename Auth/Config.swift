@@ -1,20 +1,19 @@
 import Foundation
 
-/// Configuration for the Kinde authentication service and Kinde Management API client
+/// Configuration for the Kinde authentication service
+/// Uses PKCE-only OAuth flow for mobile security (no client secrets)
 public struct Config: Decodable {
     let issuer: String
     let clientId: String
-    let clientSecret: String?
     let redirectUri: String
     let postLogoutRedirectUri: String
     let scope: String
     let audience: String?
     
-    public init(issuer: String, clientId: String, clientSecret: String?, redirectUri: String,
+    public init(issuer: String, clientId: String, redirectUri: String,
                 postLogoutRedirectUri: String, scope: String, audience: String?) {
         self.issuer = issuer
         self.clientId = clientId
-        self.clientSecret = clientSecret
         self.redirectUri = redirectUri
         self.postLogoutRedirectUri = postLogoutRedirectUri
         self.scope = scope
@@ -90,10 +89,11 @@ public struct Config: Decodable {
                 return nil
             }
         let audience = values["Audience"] as? String
-        let clientSecret = values["ClientSecret"] as? String
+        
+        // Security: Client secrets are not supported in mobile apps
+        // Use PKCE-only OAuth flow for secure authentication
         return Config(issuer: issuer,
                       clientId: clientId,
-                      clientSecret: clientSecret,
                       redirectUri: redirectUri,
                       postLogoutRedirectUri: postLogoutRedirectUri,
                       scope: scope,
