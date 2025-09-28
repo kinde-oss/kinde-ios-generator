@@ -4,7 +4,7 @@ import Foundation
 /// This class provides client-side validation of user entitlements, feature flags, and hard checks
 /// based on JWT token claims, following iOS mobile app best practices.
 public class MobileEntitlements {
-    private let auth: Auth
+    private unowned let auth: Auth
     private let logger: LoggerProtocol
     
     public init(auth: Auth, logger: LoggerProtocol = DefaultLogger()) {
@@ -23,7 +23,11 @@ public class MobileEntitlements {
         }
         
         // Parse entitlements from the claim
-        if let claimString = entitlementsClaim as? String,
+        if let entitlementsDict = entitlementsClaim.value as? [String: Any] {
+            return entitlementsDict
+        }
+        
+        if let claimString = entitlementsClaim.value as? String,
            let data = claimString.data(using: .utf8),
            let entitlements = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
             return entitlements
@@ -109,7 +113,11 @@ public class MobileEntitlements {
         }
         
         // Parse feature flags from the claim
-        if let claimString = flagsClaim as? String,
+        if let flagsDict = flagsClaim.value as? [String: Any] {
+            return flagsDict
+        }
+        
+        if let claimString = flagsClaim.value as? String,
            let data = claimString.data(using: .utf8),
            let flags = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
             return flags
@@ -197,11 +205,14 @@ public class MobileEntitlements {
             checkName: "role_\(role)",
             validation: { 
                 // Check if role exists in claims
-                let rolesClaim = auth.getClaim(forKey: "roles")
-                if let rolesString = rolesClaim as? String {
+                guard let rolesClaim = auth.getClaim(forKey: "roles") else { return nil }
+                if let roles = rolesClaim.value as? [String] {
+                    return roles.contains(role)
+                }
+                if let rolesString = rolesClaim.value as? String {
                     return rolesString.contains(role)
                 }
-                return false
+                return nil
             },
             fallbackValue: fallbackAccess
         )
@@ -251,7 +262,8 @@ public class MobileEntitlements {
         return performHardCheck(
             checkName: "user_organization",
             validation: { 
-                guard let orgCode = auth.getClaim(forKey: "org_code") else { return nil }
+                guard let orgCodeClaim = auth.getClaim(forKey: "org_code"),
+                      let orgCode = orgCodeClaim.value as? String else { return nil }
                 return ["org_code": orgCode]
             },
             fallbackValue: [:]
@@ -264,8 +276,7 @@ public class MobileEntitlements {
         return performHardCheck(
             checkName: "subscription_tier",
             validation: { 
-                let claim = auth.getClaim(forKey: "subscription_tier")
-                return claim as? String
+                return auth.getClaim(forKey: "subscription_tier")?.value as? String
             },
             fallbackValue: "free"
         )

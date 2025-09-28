@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A6232C7B7FD4E6E9F29F91A /* MobileEntitlements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A54AA9A19A40FCB15143B2 /* MobileEntitlements.swift */; };
 		3B1EBA7329F944E000444EEB /* KindeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1EBA6B29F944E000444EEB /* KindeSDK.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		3B1EBAAF29F945DB00444EEB /* KindeSDK.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EBA8129F945DA00444EEB /* KindeSDK.podspec */; };
 		3B1EBAD329F945DB00444EEB /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EBAAC29F945DA00444EEB /* Package.resolved */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		89A54AA9A19A40FCB15143B2 /* MobileEntitlements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileEntitlements.swift; sourceTree = "<group>"; };
 		3B1EBA6B29F944E000444EEB /* KindeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KindeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1EBA7229F944E000444EEB /* KindeSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KindeSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1EBA8129F945DA00444EEB /* KindeSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KindeSDK.podspec; sourceTree = "<group>"; };
@@ -233,7 +235,8 @@
 				3B41B1C72A0E5F9100EFD9E4 /* BearerRequestBuilderFactory.swift */,
 				3B41B1C82A0E5F9100EFD9E4 /* BearerRequestBuilder.swift */,
 				3B41B1C92A0E5F9100EFD9E4 /* BearerDecodableRequestBuilder.swift */,
-			);
+		
+				89A54AA9A19A40FCB15143B2 /* MobileEntitlements.swift */,	);
 			path = Auth;
 			sourceTree = "<group>";
 		};
@@ -428,6 +431,7 @@
 				3B41B1EF2A0E5F9100EFD9E4 /* JSONDataEncoding.swift in Sources */,
 				D7FD1F6E2A8D5D390088802F /* PList.swift in Sources */,
 				3B41B1E22A0E5F9100EFD9E4 /* Auth.swift in Sources */,
+				8A6232C7B7FD4E6E9F29F91A /* MobileEntitlements.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
