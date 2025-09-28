@@ -1053,15 +1053,21 @@ public class MobileEntitlements {
     /// Get all user entitlements from token claims
     /// - Returns: Dictionary of entitlements with their values
     public func getEntitlements() -> [String: Any] {
-        guard let entitlementsClaim = auth.getClaim(forKey: "entitlements") else {
+        guard let entitlementsClaim = auth.getClaim(forKey: "entitlements"),
+              let rawEntitlements = entitlementsClaim.value else {
             logger.debug(message: "No entitlements claim found in token")
             return [:]
         }
         
         // Parse entitlements from the claim
-        if let claimString = entitlementsClaim as? String,
+        if let claimString = rawEntitlements as? String,
            let data = claimString.data(using: .utf8),
            let entitlements = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+            return entitlements
+        }
+        
+        // If already a dictionary, return it directly
+        if let entitlements = rawEntitlements as? [String: Any] {
             return entitlements
         }
         
@@ -1139,15 +1145,21 @@ public class MobileEntitlements {
     /// Get all feature flags from token claims
     /// - Returns: Dictionary of feature flags with their values
     public func getFeatureFlags() -> [String: Any] {
-        guard let flagsClaim = auth.getClaim(forKey: "feature_flags") else {
+        guard let flagsClaim = auth.getClaim(forKey: "feature_flags"),
+              let rawFlags = flagsClaim.value else {
             logger.debug(message: "No feature_flags claim found in token")
             return [:]
         }
         
         // Parse feature flags from the claim
-        if let claimString = flagsClaim as? String,
+        if let claimString = rawFlags as? String,
            let data = claimString.data(using: .utf8),
            let flags = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+            return flags
+        }
+        
+        // If already a dictionary, return it directly
+        if let flags = rawFlags as? [String: Any] {
             return flags
         }
         
@@ -1233,8 +1245,13 @@ public class MobileEntitlements {
             checkName: "role_\(role)",
             validation: { 
                 // Check if role exists in claims
-                let rolesClaim = auth.getClaim(forKey: "roles")
-                if let rolesString = rolesClaim as? String {
+                guard let rolesValue = auth.getClaim(forKey: "roles")?.value else {
+                    return false
+                }
+                if let roles = rolesValue as? [String] {
+                    return roles.contains(role)
+                }
+                if let rolesString = rolesValue as? String {
                     return rolesString.contains(role)
                 }
                 return false
@@ -1287,7 +1304,7 @@ public class MobileEntitlements {
         return performHardCheck(
             checkName: "user_organization",
             validation: { 
-                guard let orgCode = auth.getClaim(forKey: "org_code") else { return nil }
+                guard let orgCode = auth.getClaim(forKey: "org_code")?.value else { return nil }
                 return ["org_code": orgCode]
             },
             fallbackValue: [:]
@@ -1300,8 +1317,10 @@ public class MobileEntitlements {
         return performHardCheck(
             checkName: "subscription_tier",
             validation: { 
-                let claim = auth.getClaim(forKey: "subscription_tier")
-                return claim as? String
+                guard let claimValue = auth.getClaim(forKey: "subscription_tier")?.value else {
+                    return nil
+                }
+                return claimValue as? String
             },
             fallbackValue: "free"
         )
