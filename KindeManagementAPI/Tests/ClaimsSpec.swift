@@ -14,11 +14,12 @@ final class ClaimsSpec: XCTestCase {
         mockLogger = MockLogger()
         
         let config = Config(
+            issuer: "https://test.kinde.com",
             clientId: "test_client_id",
-            domain: "test.kinde.com",
-            redirectUrl: URL(string: "https://test.com/callback")!,
-            logoutRedirectUrl: URL(string: "https://test.com/logout")!,
-            scope: "openid profile email"
+            redirectUri: "https://test.com/callback",
+            postLogoutRedirectUri: "https://test.com/logout",
+            scope: "openid profile email",
+            audience: nil
         )
         
         auth = Auth(config: config, authStateRepository: mockAuthStateRepository, logger: mockLogger)
