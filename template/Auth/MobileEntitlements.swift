@@ -192,7 +192,12 @@ public class MobileEntitlements {
     public func validatePermission(permission: String, fallbackAccess: Bool = false) -> Bool {
         return performHardCheck(
             checkName: "permission_\(permission)",
-            validation: { auth.getPermission(name: permission) != nil },
+            validation: {
+                guard let permission = auth.getPermission(name: permission) else {
+                    return nil
+                }
+                return permission.isGranted
+            },
             fallbackValue: fallbackAccess
         )
     }
