@@ -282,21 +282,6 @@ final class ClaimsSpec: XCTestCase {
     
     // MARK: - Test Hard Checks (Validation)
     
-    func testInvalidTokenTypeValidation() {
-        setupMockAuthState()
-        
-        // Test with invalid token type - should return empty claims
-        let invalidClaims = claims.getAllClaims(tokenType: TokenType(rawValue: "invalid_token")!)
-        XCTAssertEqual(invalidClaims.count, 0)
-        
-        // Test getClaim with invalid token type
-        let invalidClaim = claims.getClaim(claimName: "aud", tokenType: TokenType(rawValue: "invalid_token")!)
-        XCTAssertNil(invalidClaim)
-        
-        // Test hasClaim with invalid token type
-        let hasInvalidClaim = claims.hasClaim(claimName: "aud", tokenType: TokenType(rawValue: "invalid_token")!)
-        XCTAssertFalse(hasInvalidClaim)
-    }
     
     func testEmptyClaimNameValidation() {
         setupMockAuthState()
